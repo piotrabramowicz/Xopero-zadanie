@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Xopero.API.Controllers.Issues.Models;
 using Xopero.Library.Commands;
+using Xopero.Library.Enums;
 
 namespace Xopero.API.Controllers.Issues;
 
@@ -27,7 +28,7 @@ public class IssuesController(IMediator mediator) : ControllerBase
         if (result)
             return NoContent();
         else
-            return StatusCode(503, $"Service: {request.ApiClient} Unavailable");
+            return StatusCode(503, GetErrorMessage(request.ApiClient));
     }
 
     [HttpPatch("{issueId:int}", Name = nameof(EditIssue))]
@@ -48,7 +49,7 @@ public class IssuesController(IMediator mediator) : ControllerBase
         if (result)
             return NoContent();
         else
-            return StatusCode(503, $"Service: {request.ApiClient} Unavailable");
+            return StatusCode(503, GetErrorMessage(request.ApiClient));
     }
 
     [HttpPatch("{issueId:int}/status", Name = nameof(CloseIssue))]
@@ -67,6 +68,11 @@ public class IssuesController(IMediator mediator) : ControllerBase
         if (result)
             return NoContent();
         else
-            return StatusCode(503, $"Service: {request.ApiClient} Unavailable");
+            return StatusCode(503, GetErrorMessage(request.ApiClient));
+    }
+
+    private static string GetErrorMessage(ApiClient apiClient)
+    {
+        return $"Service: {apiClient} Unavailable";
     }
 }
