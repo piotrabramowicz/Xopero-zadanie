@@ -3,6 +3,5 @@
 public enum ApiClient
 {
     GitHub,
-    BitBucket,
     GitLab
 }

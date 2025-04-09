@@ -3,10 +3,11 @@ using Xopero.Library.Commands;
 
 namespace Xopero.Library.Handlers;
 
-internal class CloseIssueCommandHandler : IRequestHandler<CloseIssueCommand>
+internal class CloseIssueCommandHandler(IServiceProvider serviceProvider) : CommandHandlerBase(serviceProvider), IRequestHandler<CloseIssueCommand, bool>
 {
-    public Task Handle(CloseIssueCommand request, CancellationToken cancellationToken)
+    public async Task<bool> Handle(CloseIssueCommand request, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        return await GetApiClient(request.ApiClient)
+            .CloseIssue(request.Id);
     }
 }

@@ -6,4 +6,4 @@ namespace Xopero.Library.Commands;
 public record CreateIssueCommand(
     string Name,
     string Description,
-    ApiClient ApiClient) : IRequest;
+    ApiClient ApiClient) : IRequest<bool>;

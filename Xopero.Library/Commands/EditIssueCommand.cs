@@ -4,7 +4,7 @@ using Xopero.Library.Enums;
 namespace Xopero.Library.Commands;
 
 public record EditIssueCommand(
-    Guid Id,
+    int Id,
     string Name,
     string Description,
-    ApiClient ApiClient) : IRequest;
+    ApiClient ApiClient) : IRequest<bool>;

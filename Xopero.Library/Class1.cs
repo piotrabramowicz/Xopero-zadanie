@@ -1,7 +1,3 @@
-﻿namespace Xopero.Library
-{
-    public class Class1
-    {
+﻿namespace Xopero.Library;
 
-    }
-}
+public class Class1;

@@ -3,10 +3,11 @@ using Xopero.Library.Commands;
 
 namespace Xopero.Library.Handlers;
 
-internal class EditIssueCommandHandler : IRequestHandler<EditIssueCommand>
+internal class EditIssueCommandHandler(IServiceProvider serviceProvider) : CommandHandlerBase(serviceProvider), IRequestHandler<EditIssueCommand, bool>
 {
-    public Task Handle(EditIssueCommand request, CancellationToken cancellationToken)
+    public async Task<bool> Handle(EditIssueCommand request, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        return await GetApiClient(request.ApiClient)
+            .EditIssue(request.Id, request.Name, request.Description);
     }
 }

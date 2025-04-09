@@ -11,46 +11,62 @@ public class IssuesController(IMediator mediator) : ControllerBase
 {
 
     [HttpPost(Name = nameof(CreateIssue))]
-    public async Task<IActionResult> CreateIssue([FromBody] CreateIssueDto request, CancellationToken cancellationToken)
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status503ServiceUnavailable)]
+    public async Task<IActionResult> CreateIssue([FromBody] IssueDto request, CancellationToken cancellationToken)
     {
         ArgumentNullException.ThrowIfNull(request);
 
         var command = new CreateIssueCommand(
             request.Name, 
             request.Description, 
-            request.ApiClient); //mapper.Map<CreateBaseCustomerCommand>(request);
+            request.ApiClient);
 
-        await mediator.Send(command, cancellationToken);
+        var result = await mediator.Send(command, cancellationToken);
 
-        return Ok();
+        if (result)
+            return NoContent();
+        else
+            return StatusCode(503, $"Service: {request.ApiClient} Unavailable");
     }
 
-    [HttpPut(Name = nameof(EditIssue))]
-    public async Task<IActionResult> EditIssue([FromBody] EditIssueDto request, CancellationToken cancellationToken)
+    [HttpPatch("{issueId:int}", Name = nameof(EditIssue))]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status503ServiceUnavailable)]
+    public async Task<IActionResult> EditIssue([FromRoute] int issueId, [FromBody] IssueDto request, CancellationToken cancellationToken)
     {
         ArgumentNullException.ThrowIfNull(request);
 
         var command = new EditIssueCommand(
-            request.Id, 
+            issueId, 
             request.Name, 
             request.Description,
-            request.ApiClient); //mapper.Map<CreateBaseCustomerCommand>(request);
+            request.ApiClient);
 
-        await mediator.Send(command, cancellationToken);
+        var result = await mediator.Send(command, cancellationToken);
 
-        return Ok();
+        if (result)
+            return NoContent();
+        else
+            return StatusCode(503, $"Service: {request.ApiClient} Unavailable");
     }
 
-
-    [HttpPatch(Name = nameof(CloseIssue))]
-    public async Task<IActionResult> CloseIssue([FromBody] CloseIssue request, CancellationToken cancellationToken)
+    [HttpPatch("{issueId:int}/status", Name = nameof(CloseIssue))]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status503ServiceUnavailable)]
+    public async Task<IActionResult> CloseIssue([FromRoute] int issueId, [FromBody] IssueApiDto request, CancellationToken cancellationToken)
     {
         ArgumentNullException.ThrowIfNull(request);
 
-        var command = new CloseIssueCommand(request.Id); //mapper.Map<CreateBaseCustomerCommand>(request);
+        var command = new CloseIssueCommand(
+            issueId, 
+            request.ApiClient);
 
-        await mediator.Send(command, cancellationToken);
+        var result = await mediator.Send(command, cancellationToken);
 
-        return Ok();
+        if (result)
+            return NoContent();
+        else
+            return StatusCode(503, $"Service: {request.ApiClient} Unavailable");
     }
 }
