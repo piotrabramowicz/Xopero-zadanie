@@ -1,0 +1,6 @@
+@Xopero.API_HostAddress = http://localhost:5234
+
+GET {{Xopero.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
