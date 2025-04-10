@@ -10,6 +10,7 @@ namespace Xopero.API.Controllers.Issues;
 [Route("[controller]")]
 public class IssuesController(IMediator mediator) : ControllerBase
 {
+    private const int StatusErrorCode = 503;
 
     [HttpPost(Name = nameof(CreateIssue))]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -28,7 +29,7 @@ public class IssuesController(IMediator mediator) : ControllerBase
         if (result)
             return NoContent();
         else
-            return StatusCode(503, GetErrorMessage(request.ApiClient));
+            return StatusCode(StatusErrorCode, GetErrorMessage(request.ApiClient));
     }
 
     [HttpPatch("{issueId:int}", Name = nameof(EditIssue))]
@@ -49,7 +50,7 @@ public class IssuesController(IMediator mediator) : ControllerBase
         if (result)
             return NoContent();
         else
-            return StatusCode(503, GetErrorMessage(request.ApiClient));
+            return StatusCode(StatusErrorCode, GetErrorMessage(request.ApiClient));
     }
 
     [HttpPatch("{issueId:int}/status", Name = nameof(CloseIssue))]
@@ -68,7 +69,7 @@ public class IssuesController(IMediator mediator) : ControllerBase
         if (result)
             return NoContent();
         else
-            return StatusCode(503, GetErrorMessage(request.ApiClient));
+            return StatusCode(StatusErrorCode, GetErrorMessage(request.ApiClient));
     }
 
     private static string GetErrorMessage(ApiClient apiClient)

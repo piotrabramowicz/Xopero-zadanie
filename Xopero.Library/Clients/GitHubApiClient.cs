@@ -18,7 +18,9 @@ internal sealed class GitHubApiClient : ApiClientBase, IApiClient
             labels = new[] { "bug" }
         };
 
-        return await PostAsync(BaseUrl, CreateStringContent(JsonSerializer.Serialize(newIssue)));
+        return await PostAsync(
+            BaseUrl, 
+            CreateStringContent(JsonSerializer.Serialize(newIssue)));
     }
 
     public async Task<bool> EditIssue(int id, string name, string description)
@@ -30,7 +32,9 @@ internal sealed class GitHubApiClient : ApiClientBase, IApiClient
             state = "Open",
         };
 
-        return await PatchAsync($"{BaseUrl}/{id}", CreateStringContent(JsonSerializer.Serialize(editIssue)));
+        return await PatchAsync(
+            $"{BaseUrl}/{id}", 
+            CreateStringContent(JsonSerializer.Serialize(editIssue)));
     }
 
     public async Task<bool> CloseIssue(int id)
@@ -40,6 +44,8 @@ internal sealed class GitHubApiClient : ApiClientBase, IApiClient
             state = "closed",
         };
 
-        return await PatchAsync($"{BaseUrl}/{id}", CreateStringContent(JsonSerializer.Serialize(editIssue)));
+        return await PatchAsync(
+            $"{BaseUrl}/{id}", 
+            CreateStringContent(JsonSerializer.Serialize(editIssue)));
     }
 }
