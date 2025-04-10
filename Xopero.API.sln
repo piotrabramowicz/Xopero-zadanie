@@ -1,11 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35527.113 d17.12
+VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xopero.API", "Xopero.API\Xopero.API.csproj", "{0A79E6EB-A8B6-4B53-A71F-085F5E574287}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xopero.Library", "Xopero.Library\Xopero.Library.csproj", "{234F3A3D-E95C-49F3-9AE7-196FBFE2F877}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{B28E018D-A31D-4962-96B6-D315FC423512}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xopero.UnitTest", "Xopero.UnitTest\Xopero.UnitTest.csproj", "{9701F8BC-7D47-452D-9CF3-8A853FD0BEA6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,8 +25,15 @@ Global
 		{234F3A3D-E95C-49F3-9AE7-196FBFE2F877}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{234F3A3D-E95C-49F3-9AE7-196FBFE2F877}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{234F3A3D-E95C-49F3-9AE7-196FBFE2F877}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9701F8BC-7D47-452D-9CF3-8A853FD0BEA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9701F8BC-7D47-452D-9CF3-8A853FD0BEA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9701F8BC-7D47-452D-9CF3-8A853FD0BEA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9701F8BC-7D47-452D-9CF3-8A853FD0BEA6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9701F8BC-7D47-452D-9CF3-8A853FD0BEA6} = {B28E018D-A31D-4962-96B6-D315FC423512}
 	EndGlobalSection
 EndGlobal
