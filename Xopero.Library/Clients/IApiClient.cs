@@ -1,6 +1,6 @@
 ﻿namespace Xopero.Library.Clients;
 
-internal interface IApiClient
+public interface IApiClient
 {
     Task<bool> CreateIssue(string Name, string Description);
 
