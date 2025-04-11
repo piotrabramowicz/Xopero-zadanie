@@ -4,7 +4,7 @@ namespace Xopero.Library.Clients;
 
 internal sealed class GitHubApiClient : ApiClientBase, IApiClient
 {
-    protected override string Token => "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";
+    protected override string Token => "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";
     protected override string MediaType => "application/vnd.github+json";
     protected override string BaseUrl => "https://api.github.com/repos/piotrabramowicz/Spoon-Knife/issues";
 
